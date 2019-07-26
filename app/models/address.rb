@@ -1,10 +1,10 @@
 class Address < ApplicationRecord
 
   belongs_to :user
-  belongs_to :order
+  has_many :orders
 
   validates_presence_of :address,
                         :city,
                         :state,
-                        :zip 
+                        :zip
 end
