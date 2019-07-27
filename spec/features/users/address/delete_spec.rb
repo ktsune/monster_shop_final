@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'New Adddress' do
+RSpec.describe 'Delete an address' do
   describe 'As a user' do
     before :each do
       @megan = Merchant.create!(name: 'Megans Marmalades', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218)
@@ -20,25 +20,19 @@ RSpec.describe 'New Adddress' do
       @order_2.order_items.create!(item: @giant, price: @hippo.price, quantity: 2)
       @order_2.order_items.create!(item: @ogre, price: @hippo.price, quantity: 2)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user_1)
-      visit "/profile/addresses"
+
+      visit "/profile/#{@user_1_work.id}"
     end
 
-    it 'I see a form to add a new address to my profile' do
-
-      click_on "New Address"
-
-      fill_in 'Address', with: @user_1_work.address
-      fill_in 'City', with: @user_1_work.city
-      fill_in 'State', with: @user_1_work.state
-      fill_in 'Zip', with: @user_1_work.zip
-
-      click_on "Submit"
+    it 'I can delete an address' do
+      click_button 'Delete Address'
+      save_and_open_page
 
       expect(current_path).to eq("/profile/addresses")
-      expect(page).to have_content(@user_1_work.address)
-      expect(page).to have_content(@user_1_work.city)
-      expect(page).to have_content(@user_1_work.state)
-      expect(page).to have_content(@user_1_work.zip)
+      expect(page).to have_no_content(@user_1_work.address)
+      expect(page).to have_no_content(@user_1_work.city)
+      expect(page).to have_no_content(@user_1_work.state)
+      expect(page).to have_no_content(@user_1_work.zip)
     end
   end
 end

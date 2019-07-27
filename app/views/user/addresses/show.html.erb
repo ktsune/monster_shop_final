@@ -3,5 +3,6 @@
   <p>City: <%= address_info.city %></p>
   <p>State: <%= address_info.state %></p>
   <p>Zip: <%= address_info.zip %></p>
-
 <% end %>
+
+<%= button_to 'Delete Address', "profile/#{@address.id}", method: :delete %>
