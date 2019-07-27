@@ -11,6 +11,9 @@ RSpec.describe 'User Registration' do
     end
 
     it 'I can register as a user' do
+      @alex = User.create!(name: "Alex Hennel", email: "straw@gmail.com", password: "fish", role: 0)
+      @alex_work = Address.create!(nickname: "work", address: "123 Straw Lane", city: "Straw City", state: "CO", zip: 12345, user_id: @alex.id)
+
       visit registration_path
 
       fill_in 'Name', with: 'Megan'
