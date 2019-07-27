@@ -17,6 +17,7 @@ class UsersController < ApplicationController
       @user = User.new(user_params)
       if @user.save
       @address = @user.addresses.new(address_params)
+      # binding.pry
       @address.nickname = 'Home'
       @address.save
       session[:user_id] = @user.id
