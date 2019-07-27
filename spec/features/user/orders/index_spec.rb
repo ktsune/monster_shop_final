@@ -1,6 +1,6 @@
 require 'rails_helper'
 include ActionView::Helpers::NumberHelper
-
+  
 RSpec.describe 'User Order Show Page' do
   describe 'As a Registered User' do
     before :each do
