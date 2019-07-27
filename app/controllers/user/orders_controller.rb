@@ -10,9 +10,13 @@ class User::OrdersController < ApplicationController
   end
 
   def create
-    address = current_user.addresses.create!(address_params)
-    order = current_user.orders.new(address_id: address.id)
-    order.save
+    id = current_user.addresses.map do |address_info|
+      address_info.id
+    end
+
+    order = current_user.orders.new(address_id: id.join(" ").to_i)
+
+    order.save!
       cart.items.each do |item|
         order.order_items.create({
           item: item,
@@ -29,11 +33,5 @@ class User::OrdersController < ApplicationController
     order = current_user.orders.find(params[:id])
     order.cancel
     redirect_to "/profile/orders/#{order.id}"
-  end
-
-private
-
-  def address_params
-    params(:address).permit(:address, :city, :state, :zip)
   end
 end
