@@ -10,8 +10,13 @@ class User::OrdersController < ApplicationController
   end
 
   def create
-    order = current_user.orders.new
-    order.save
+    id = current_user.addresses.map do |address_info|
+      address_info.id
+    end
+
+    order = current_user.orders.new(address_id: id.join(" ").to_i)
+
+    order.save!
       cart.items.each do |item|
         order.order_items.create({
           item: item,

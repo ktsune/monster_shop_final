@@ -4,22 +4,22 @@ RSpec.describe 'User Login and Log Out' do
   describe 'A registered user can log in' do
     describe 'As a default user' do
       before :each do
-        @user = User.create(name: 'Megan', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218, email: 'megan@example.com', password: 'securepassword')
+        @alex = User.create!(name: "Alex Hennel", email: "straw@gmail.com", password: "fish", role: 0)
       end
 
       it 'with correct credentials' do
         visit login_path
 
-        fill_in 'Email', with: @user.email
-        fill_in 'Password', with: @user.password
+        fill_in 'Email', with: @alex.email
+        fill_in 'Password', with: @alex.password
         click_button 'Log In'
 
         expect(current_path).to eq(profile_path)
-        expect(page).to have_content("Logged in as #{@user.name}")
+        expect(page).to have_content("Logged in as #{@alex.name}")
       end
 
       it 'users already logged in will be redirected' do
-        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@alex)
 
         visit login_path
 
@@ -31,7 +31,7 @@ RSpec.describe 'User Login and Log Out' do
     describe 'As a merchant user' do
       before :each do
         @merchant = Merchant.create!(name: 'Megans Marmalades', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218)
-        @m_user = @merchant.users.create(name: 'Megan', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218, email: 'megan@example.com', password: 'securepassword')
+        @m_user = @merchant.users.create(name: 'Megan', email: 'megan@example.com', password: 'securepassword')
       end
 
       it 'with correct credentials' do
@@ -57,7 +57,7 @@ RSpec.describe 'User Login and Log Out' do
 
     describe 'As admin user' do
       before :each do
-        @admin = User.create(name: 'Megan', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218, email: 'megan@example.com', password: 'securepassword', role: :admin)
+        @admin = User.create(name: 'Megan', email: 'megan@example.com', password: 'securepassword', role: :admin)
       end
 
       it 'with correct credentials' do
@@ -84,14 +84,14 @@ RSpec.describe 'User Login and Log Out' do
 
   describe 'A registered user can not log in with bad credentials' do
     before :each do
-      @user = User.create(name: 'Megan', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218, email: 'megan@example.com', password: 'securepassword')
+      @alex = User.create!(name: "Alex Hennel", email: "straw@gmail.com", password: "fish", role: 0)
     end
 
     it 'incorrect email' do
       visit login_path
 
       fill_in 'Email', with: 'bad@email.com'
-      fill_in 'Password', with: @user.password
+      fill_in 'Password', with: @alex.password
       click_button 'Log In'
 
       expect(page).to have_content('Your email or password was incorrect!')
@@ -101,7 +101,7 @@ RSpec.describe 'User Login and Log Out' do
     it 'incorrect password' do
       visit login_path
 
-      fill_in 'Email', with: @user.email
+      fill_in 'Email', with: @alex.email
       fill_in 'Password', with: 'bad password'
       click_button 'Log In'
 
@@ -112,20 +112,20 @@ RSpec.describe 'User Login and Log Out' do
 
   describe 'A logged in user can log out' do
     before :each do
-      @user = User.create(name: 'Megan', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218, email: 'megan@example.com', password: 'securepassword')
+      @alex = User.create!(name: "Alex Hennel", email: "straw@gmail.com", password: "fish", role: 0)
     end
 
     it 'I visit the log out path' do
       visit login_path
 
-      fill_in 'Email', with: @user.email
-      fill_in 'Password', with: @user.password
+      fill_in 'Email', with: @alex.email
+      fill_in 'Password', with: @alex.password
       click_button 'Log In'
 
       click_link 'Log Out'
 
       expect(current_path).to eq(root_path)
-      expect(page).to_not have_content("Logged in as #{@user.name}")
+      expect(page).to_not have_content("Logged in as #{@alex.name}")
       expect(page).to have_content('You have been logged out!')
     end
 
@@ -135,8 +135,8 @@ RSpec.describe 'User Login and Log Out' do
 
       visit login_path
 
-      fill_in 'Email', with: @user.email
-      fill_in 'Password', with: @user.password
+      fill_in 'Email', with: @alex.email
+      fill_in 'Password', with: @alex.password
       click_button 'Log In'
 
       visit item_path(ogre)

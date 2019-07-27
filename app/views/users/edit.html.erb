@@ -2,20 +2,22 @@
   <%= f.label :name %>
   <%= f.text_field :name %>
 
-  <%= f.label :address %>
-  <%= f.text_field :address %>
-
-  <%= f.label :city %>
-  <%= f.text_field :city %>
-
-  <%= f.label :state %>
-  <%= f.text_field :state %>
-
-  <%= f.label :zip %>
-  <%= f.text_field :zip %>
-
   <%= f.label :email %>
   <%= f.email_field :email %>
 
+  <%= f.fields_for :addresses do |addresses_form| %>
+      <%= addresses_form.label :address %>
+      <%= addresses_form.text_field :address %>
+
+      <%= addresses_form.label :city %>
+      <%= addresses_form.text_field :city %>
+
+      <%= addresses_form.label :state %>
+      <%= addresses_form.text_field :state %>
+
+      <%= addresses_form.label :zip %>
+      <%= addresses_form.text_field :zip %>
+
   <%= f.submit 'Update Profile' %>
+  <% end %>
 <% end %>

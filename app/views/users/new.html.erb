@@ -1,27 +1,30 @@
-<%= form_tag users_path do %>
-  <%= label_tag :name %>
-  <%= text_field_tag :name %>
+<%= form_for @user do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
 
-  <%= label_tag :address %>
-  <%= text_field_tag :address %>
+  <%= f.label :email %>
+  <%= f.email_field :email %>
 
-  <%= label_tag :city %>
-  <%= text_field_tag :city %>
+  <%= f.label :password %>
+  <%= f.password_field :password %>
 
-  <%= label_tag :state %>
-  <%= text_field_tag :state %>
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %>
 
-  <%= label_tag :zip %>
-  <%= text_field_tag :zip %>
+  <%= f.fields_for :addresses do |addresses_form| %>
+      <%= addresses_form.label :address %>
+      <%= addresses_form.text_field :address %>
 
-  <%= label_tag :email %>
-  <%= email_field_tag :email %>
+      <%= addresses_form.label :city %>
+      <%= addresses_form.text_field :city %>
 
-  <%= label_tag :password %>
-  <%= password_field_tag :password %>
+      <%= addresses_form.label :state %>
+      <%= addresses_form.text_field :state %>
 
-  <%= label_tag :password_confirmation %>
-  <%= password_field_tag :password_confirmation %>
+      <%= addresses_form.label :zip %>
+      <%= addresses_form.text_field :zip %>
 
-  <%= submit_tag 'Register' %>
+  <%= f.submit 'Register' %>
+
+  <% end %>
 <% end %>

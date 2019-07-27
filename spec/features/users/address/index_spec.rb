@@ -1,5 +1,4 @@
 require 'rails_helper'
-include ActionView::Helpers::NumberHelper
 
 RSpec.describe 'Merchant Show Page' do
   describe 'As a visitor' do
@@ -22,51 +21,8 @@ RSpec.describe 'Merchant Show Page' do
       @order_2.order_items.create!(item: @ogre, price: @hippo.price, quantity: 2)
     end
 
-    it 'I see merchant name and address' do
-      visit "/merchants/#{@megan.id}"
+    it 'I can see all addresses displayed on the page' do
 
-      expect(page).to have_content(@megan.name)
-
-      within '.address' do
-        expect(page).to have_content(@megan.address)
-        expect(page).to have_content("#{@megan.city} #{@megan.state} #{@megan.zip}")
-      end
-    end
-
-    it 'I see a link to this merchants items' do
-      visit "/merchants/#{@megan.id}"
-
-      click_link "Items"
-
-      expect(current_path).to eq("/items")
-    end
-
-    it 'I see merchant statistics' do
-      visit "/merchants/#{@megan.id}"
-
-      within '.statistics' do
-        expect(page).to have_content("Item Count: #{@megan.item_count}")
-        expect(page).to have_content("Average Item Price: #{number_to_currency(@megan.average_item_price)}")
-        expect(page).to have_content("Cities Served:\nBlue City, CA\nStraw City, CO")
-      end
-    end
-
-    it 'I see stats for merchants with items, but no orders' do
-      visit "/merchants/#{@brian.id}"
-
-      within '.statistics' do
-        expect(page).to have_content("Item Count: #{@brian.item_count}")
-        expect(page).to have_content("Average Item Price: #{number_to_currency(@brian.average_item_price)}")
-        expect(page).to have_content("This Merchant has no Orders!")
-      end
-    end
-
-    it 'I see stats for merchants with no items or orders' do
-      visit "/merchants/#{@sal.id}"
-
-      within '.statistics' do
-        expect(page).to have_content('This Merchant has no Items, or Orders!')
-      end
     end
   end
-end
+end 
