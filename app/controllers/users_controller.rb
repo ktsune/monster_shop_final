@@ -15,8 +15,8 @@ class UsersController < ApplicationController
     # address_params[:nickname] = "Home"
     # @address = Address.new(address_params)
       @user = User.new(user_params)
-      @address = @user.addresses.new(address_params)
       if @user.save
+      @address = @user.addresses.new(address_params)
       @address.nickname = 'Home'
       @address.save
       session[:user_id] = @user.id
