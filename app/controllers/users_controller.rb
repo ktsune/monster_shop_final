@@ -8,18 +8,12 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    1.times {@user.addresses.build}
   end
 
   def create
-    # address_params[:user_id] = @user.id
-    # address_params[:nickname] = "Home"
-    # @address = Address.new(address_params)
-      @user = User.new(user_params)
-      if @user.save
-      @address = @user.addresses.new(address_params)
-      # binding.pry
-      @address.nickname = 'Home'
-      @address.save
+    @user = User.new(user_params)
+    if @user.save
       session[:user_id] = @user.id
       flash[:notice] = "Welcome, #{@user.name}!"
       redirect_to profile_path
@@ -51,10 +45,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.permit(:name, :email, :password)
+    params.require(:user).permit(:name, :email, :password, addresses_attributes: [:id, :address, :state, :city, :zip])
   end
 
-  def address_params
-    params.permit(:address, :city, :state, :zip)
-  end
 end

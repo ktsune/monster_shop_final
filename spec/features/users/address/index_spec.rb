@@ -22,6 +22,7 @@ RSpec.describe 'Merchant Show Page' do
     end
 
     it 'I can see all addresses displayed on the page' do
-      
+
     end
   end
+end 
