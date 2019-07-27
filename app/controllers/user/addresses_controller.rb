@@ -8,4 +8,8 @@ class User::AddressesController < ApplicationController
   def show
     @user = current_user
   end
+
+  def new
+    @address = Address.new
+  end
 end

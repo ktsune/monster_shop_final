@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe 'Merchant Show Page' do
-  describe 'As a visitor' do
+RSpec.describe 'Address show page' do
+  describe 'As a user' do
     before :each do
       @megan = Merchant.create!(name: 'Megans Marmalades', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218)
       @brian = Merchant.create!(name: 'Brians Bagels', address: '125 Main St', city: 'Denver', state: 'CO', zip: 80218)
