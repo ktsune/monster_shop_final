@@ -15,7 +15,9 @@ RSpec.describe "User Profile Path" do
       expect(page).to have_content(@user.name)
       expect(page).to have_content(@user.email)
       expect(page).to have_content(@user_work.address)
-      expect(page).to have_content("#{@user_work.city} #{@user_work.state} #{@user_work.zip}")
+      expect(page).to have_content(@user_work.city)
+      expect(page).to have_content(@user_work.state)
+      expect(page).to have_content(@user_work.zip)
       expect(page).to_not have_content(@user.password)
       expect(page).to have_link('Edit')
     end
@@ -52,7 +54,9 @@ RSpec.describe "User Profile Path" do
       expect(page).to have_content(name)
       expect(page).to have_content(email)
       expect(page).to have_content(address)
-      expect(page).to have_content("#{city} #{state} #{zip}")
+      expect(page).to have_content(city)
+      expect(page).to have_content(state)
+      expect(page).to have_content(zip)
     end
 
     it "I can update my password" do
