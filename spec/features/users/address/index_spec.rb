@@ -19,10 +19,15 @@ RSpec.describe 'Merchant Show Page' do
       @order_1.order_items.create!(item: @ogre, price: @ogre.price, quantity: 2)
       @order_2.order_items.create!(item: @giant, price: @hippo.price, quantity: 2)
       @order_2.order_items.create!(item: @ogre, price: @hippo.price, quantity: 2)
+      visit '/profile/addresses'
     end
 
     it 'I can see all addresses displayed on the page' do
 
+      expect(page).to have_content(@user_1_work.address)
+      expect(page).to have_content(@user_1_work.city)
+      expect(page).to have_content(@user_1_work.state)
+      expect(page).to have_content(@user_1_work.zip)
     end
   end
-end 
+end
