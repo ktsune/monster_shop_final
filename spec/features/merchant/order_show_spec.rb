@@ -23,10 +23,10 @@ RSpec.describe 'Merchant Order Show Page' do
       visit "/merchant/orders/#{@order_2.id}"
 
       expect(page).to have_content(@m_user.name)
-      expect(page).to have_content(@m_user.address)
-      expect(page).to have_content(@m_user.city)
-      expect(page).to have_content(@m_user.state)
-      expect(page).to have_content(@m_user.zip)
+      expect(page).to have_content(@m_user_work.address)
+      expect(page).to have_content(@m_user_work.city)
+      expect(page).to have_content(@m_user_work.state)
+      expect(page).to have_content(@m_user_work.zip)
 
       within "#order-item-#{@order_item_3.id}" do
         expect(page).to have_link(@order_item_3.item.name)
