@@ -35,10 +35,7 @@ RSpec.describe 'Delete an address' do
         click_button 'Delete Address'
       end
 
-      # save_and_open_page
-
       expect(current_path).to eq("/profile/addresses")
-      # expect(page).to have_css("section#address-#{@user_2_work.id}")
       expect(page).to_not have_css("section#address-#{@user_1_work.id}")
     end
   end
