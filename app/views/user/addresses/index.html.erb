@@ -1,6 +1,7 @@
-<h1>Addresses</h1>
+<h1>Addresses for <%= @user.name %></h1>
 
 <% @user.addresses.map do |address_info| %>
+  <p><%= link_to "Address # #{address_info.id}", "/profile/#{address_info.id}" %></p>
   <p>Street: <%= address_info.address %></p>
   <p>City: <%= address_info.city %></p>
   <p>State: <%= address_info.state %></p>

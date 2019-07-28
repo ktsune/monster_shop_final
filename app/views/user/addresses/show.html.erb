@@ -1,8 +1,9 @@
-<% @user.addresses.map do |address_info| %>
-  <p>Street: <%= address_info.address %></p>
-  <p>City: <%= address_info.city %></p>
-  <p>State: <%= address_info.state %></p>
-  <p>Zip: <%= address_info.zip %></p>
-<% end %>
+<h2>Address Info</h2>
+<p>Street: <%= @address.address %></p>
+<p>City: <%= @address.city %></p>
+<p>State: <%= @address.state %></p>
+<p>Zip: <%= @address.zip %></p>
 
-<%= button_to 'Delete Address', "profile/#{@address.id}", method: :delete %>
+
+<%= button_to "Edit Address", "/profile/#{@address.id}/edit_address", method: :get %>
+<%= button_to 'Delete Address', "/profile/#{@address.id}", method: :delete %>

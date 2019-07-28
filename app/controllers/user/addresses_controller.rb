@@ -18,7 +18,7 @@ class User::AddressesController < ApplicationController
     @user = current_user
     @address = @user.addresses.new(address_params)
     if @address.save
-      flash[:notice] = 'Address has been updated!'
+      flash[:notice] = 'Your new address has been saved!'
       redirect_to "/profile/addresses"
     else
       generate_flash(@address)
@@ -26,13 +26,28 @@ class User::AddressesController < ApplicationController
     end
   end
 
+  def edit
+    @address = Address.find(params[:id])
+  end
+
+  def update 
+    @user = current_user
+    @address = Address.find(params[:id])
+    if @user.addresses.update(address_params)
+      flash[:notice] = 'Your address has been updated!'
+      redirect_to "/profile/#{@address.id}"
+    else
+      generate_flash(@address)
+      render :edit
+    end
+  end
+
   def destroy
     @user = current_user
-    binding.pry
     @address = Address.find(params[:id])
     @address.destroy
 
-    redirect_to "/profile/#{@user.id}"
+    redirect_to "/profile/addresses"
   end
 
   private
