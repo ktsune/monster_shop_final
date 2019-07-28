@@ -1,0 +1,12 @@
+<h2>Address Info</h2>
+<p>Street: <%= @address.address %></p>
+<p>City: <%= @address.city %></p>
+<p>State: <%= @address.state %></p>
+<p>Zip: <%= @address.zip %></p>
+
+
+<%= button_to "Edit Address", "/profile/#{@address.id}/edit_address", method: :get %>
+
+<section id='address-<%= @address.id %>'>
+  <%= button_to 'Delete Address', "/profile/#{@address.id}", method: :delete %>
+</section>

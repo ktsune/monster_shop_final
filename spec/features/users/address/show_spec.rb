@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe 'Address Index Page' do
-  describe 'As a visitor' do
+RSpec.describe 'Address show page' do
+  describe 'As a user' do
     before :each do
       @megan = Merchant.create!(name: 'Megans Marmalades', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218)
       @brian = Merchant.create!(name: 'Brians Bagels', address: '125 Main St', city: 'Denver', state: 'CO', zip: 80218)
@@ -20,10 +20,10 @@ RSpec.describe 'Address Index Page' do
       @order_2.order_items.create!(item: @giant, price: @hippo.price, quantity: 2)
       @order_2.order_items.create!(item: @ogre, price: @hippo.price, quantity: 2)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user_1)
-      visit '/profile/addresses'
+      visit "/profile/#{@user_1_work.id}"
     end
 
-    it 'I can see all addresses displayed on the page' do
+    it 'When I click on an address, I can see its details displayed on the page' do
 
       expect(page).to have_content(@user_1_work.address)
       expect(page).to have_content(@user_1_work.city)

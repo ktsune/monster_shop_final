@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe 'Address Index Page' do
-  describe 'As a visitor' do
+RSpec.describe 'Delete an address' do
+  describe 'As a user' do
     before :each do
       @megan = Merchant.create!(name: 'Megans Marmalades', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218)
       @brian = Merchant.create!(name: 'Brians Bagels', address: '125 Main St', city: 'Denver', state: 'CO', zip: 80218)
@@ -20,15 +20,23 @@ RSpec.describe 'Address Index Page' do
       @order_2.order_items.create!(item: @giant, price: @hippo.price, quantity: 2)
       @order_2.order_items.create!(item: @ogre, price: @hippo.price, quantity: 2)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user_1)
-      visit '/profile/addresses'
+      visit "profile/addresses"
     end
 
-    it 'I can see all addresses displayed on the page' do
+    it 'I can delete an address' do
+      visit "/profile/#{@user_1_work.id}"
 
       expect(page).to have_content(@user_1_work.address)
       expect(page).to have_content(@user_1_work.city)
       expect(page).to have_content(@user_1_work.state)
       expect(page).to have_content(@user_1_work.zip)
+
+      within "#address-#{@user_1_work.id}" do
+        click_button 'Delete Address'
+      end
+
+      expect(current_path).to eq("/profile/addresses")
+      expect(page).to_not have_css("section#address-#{@user_1_work.id}")
     end
   end
 end
