@@ -6,4 +6,7 @@
 
 
 <%= button_to "Edit Address", "/profile/#{@address.id}/edit_address", method: :get %>
-<%= button_to 'Delete Address', "/profile/#{@address.id}", method: :delete %>
+
+<section id='address-<%= @address.id %>'>
+  <%= button_to 'Delete Address', "/profile/#{@address.id}", method: :delete %>
+</section>

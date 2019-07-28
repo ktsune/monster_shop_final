@@ -26,13 +26,20 @@ RSpec.describe 'Delete an address' do
     it 'I can delete an address' do
       visit "/profile/#{@user_1_work.id}"
 
-      click_button 'Delete Address'
+      expect(page).to have_content(@user_1_work.address)
+      expect(page).to have_content(@user_1_work.city)
+      expect(page).to have_content(@user_1_work.state)
+      expect(page).to have_content(@user_1_work.zip)
+
+      within "#address-#{@user_1_work.id}" do
+        click_button 'Delete Address'
+      end
+
+      # save_and_open_page
 
       expect(current_path).to eq("/profile/addresses")
-      expect(page).to have_no_content(@user_1_work.address)
-      expect(page).to have_no_content(@user_1_work.city)
-      expect(page).to have_no_content(@user_1_work.state)
-      expect(page).to have_no_content(@user_1_work.zip)
+      # expect(page).to have_css("section#address-#{@user_2_work.id}")
+      expect(page).to_not have_css("section#address-#{@user_1_work.id}")
     end
   end
 end
