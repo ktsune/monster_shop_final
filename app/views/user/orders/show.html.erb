@@ -23,5 +23,5 @@
   <p>City: <%= address_info.city %></p>
   <p>State: <%= address_info.state %></p>
   <p>Zip: <%= address_info.zip %></p>
-
 <% end %>
+<h5>Please choose an address: <%= select_tag 'person', options_from_collection_for_select(@addresses, 'id', 'nickname') %> </h5>
