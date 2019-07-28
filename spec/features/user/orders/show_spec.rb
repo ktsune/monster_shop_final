@@ -83,5 +83,14 @@ RSpec.describe 'Order Show Page' do
       expect(@giant.inventory).to eq(5)
       expect(@ogre.inventory).to eq(7)
     end
+
+    it 'I can pick an address to fill my order with' do
+      visit "/profile/orders/#{@order_1.id}"
+
+      expect(page).to have_content(@user_work.address)
+      expect(page).to have_content(@user_work.city)
+      expect(page).to have_content(@user_work.state)
+      expect(page).to have_content(@user_work.zip)
+    end
   end
 end

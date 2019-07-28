@@ -16,3 +16,12 @@
     <p>Subtotal: <%= number_to_currency(order_item.subtotal) %></p>
   </section>
 <% end %>
+
+<h2>Which address would you like to send this order to?</h2>
+<% @addresses.map do |address_info| %>
+  <p>Street: <%= address_info.address %></p>
+  <p>City: <%= address_info.city %></p>
+  <p>State: <%= address_info.state %></p>
+  <p>Zip: <%= address_info.zip %></p>
+
+<% end %>
