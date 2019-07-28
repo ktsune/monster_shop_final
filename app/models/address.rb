@@ -8,4 +8,8 @@ class Address < ApplicationRecord
                         :city,
                         :state,
                         :zip
+
+  def shipped_order?
+    self.orders.where(status: "shipped").any?
+  end
 end

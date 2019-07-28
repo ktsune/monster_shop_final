@@ -30,7 +30,7 @@ class User::AddressesController < ApplicationController
     @address = Address.find(params[:id])
   end
 
-  def update 
+  def update
     @user = current_user
     @address = Address.find(params[:id])
     if @user.addresses.update(address_params)
@@ -43,10 +43,13 @@ class User::AddressesController < ApplicationController
   end
 
   def destroy
-    @user = current_user
     @address = Address.find(params[:id])
-    @address.destroy
-
+    if !@address.shipped_order?
+      @user = current_user
+      @address.destroy
+    else
+      flash[:error] = "This address has been used in a shipped order and cannot be deleted!"
+    end
     redirect_to "/profile/addresses"
   end
 
