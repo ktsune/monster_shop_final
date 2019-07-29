@@ -21,13 +21,13 @@ RSpec.describe 'Update Address on Order Show Page' do
       visit "/profile/orders/#{@order_1.id}"
 
       expect(page).to have_content("Please choose an address:")
-      expect(page).to have_button("Choose This Address")
+      expect(page).to have_button("Update Shipping Address")
 
       @order_1.reload.update(status: "packaged")
       visit "/profile/orders/#{@order_1.id}"
 
       expect(page).to have_no_content("Please choose an address:")
-      expect(page).to have_no_button("Choose This Address")
+      expect(page).to have_no_button("Update Shipping Address")
     end
   end
 end
