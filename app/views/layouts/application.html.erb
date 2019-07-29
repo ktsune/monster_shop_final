@@ -3,36 +3,85 @@
   <head>
     <title>MonsterShop</title>
     <%= csrf_meta_tags %>
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
-    <nav>
-      <%= link_to 'Home', root_path %>
-      <%= link_to 'Register', registration_path unless current_user %>
-      <%= link_to 'Log In', login_path unless current_user %>
-      <% if current_user %>
-        <%= link_to 'Log Out', logout_path %>
-        <%= link_to 'Profile', profile_path %>
-        <p>Logged in as <%= current_user.name %></p>
-        <% if current_merchant_user? %>
-          <%= link_to 'Merchant Dashboard', merchant_dashboard_path %>
-        <% elsif current_admin? %>
-          <%= link_to 'Admin Dashboard', admin_dashboard_path %>
-          <%= link_to 'Users', '/admin/users' %>
+
+    <nav class="navbar navbar-dark bg-primary">
+        <%= link_to 'MonsterShop', root_path, class:"navbar-brand" %>
+        <% if current_user %>
+          <a class="navbar-brand"> <p>Logged in as <%= current_user.name %></a>
         <% end %>
-      <% end %>
-      <%= link_to 'Merchants', '/merchants' %>
-      <%= link_to 'Items', '/items' %>
-      <%= link_to "Cart: #{cart.count}", cart_path unless current_user && current_admin?%>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+
+          <li class="nav-item active">
+            <%= link_to 'Home', root_path, class:"nav-link" %>
+          </li>
+          <% unless current_user %>
+            <li class="nav-item">
+              <%= link_to 'Log In', login_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Register', registration_path, class: "nav-link" %>
+            </li>
+          <% end %>
+
+          <% if current_user %>
+            <li class="nav-item">
+              <%= link_to 'Log Out', logout_path, class: "nav-link" %>
+            </li>
+          <% if current_user && !current_admin? %>
+            <li class="nav-item">
+              <%= link_to 'Profile', profile_path, class: "nav-link" %>
+            </li>
+          <% end %>
+
+            <% if current_merchant_user? %>
+              <li class="nav-item">
+                <%= link_to 'Merchant Dashboard', merchant_dashboard_path, class: "nav-link" %>
+              </li>
+            <% elsif current_admin? %>
+              <li class="nav-item">
+                <%= link_to 'Admin Dashboard', admin_dashboard_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'Users', href='/admin/users', class: "nav-link" %>
+              </li>
+            <% end %>
+        <% end %>
+
+          <li class="nav-item">
+            <%= link_to 'Merchants', '/merchants', class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Items', '/items', class: "nav-link" %>
+          </li>
+
+          <% if current_user && !current_admin? %>
+            <li class="nav-item">
+              <%= link_to "Cart: #{cart.count}", cart_path, class: "nav-link" %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
     </nav>
+
     <% flash.each do |key, value| %>
       <div class="<%= flash_class(key) %>">
         <%= value %>
       </div>
     <% end %>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <%= yield %>
   </body>
 </html>
