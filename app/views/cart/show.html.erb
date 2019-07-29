@@ -22,7 +22,7 @@
       <% if current_user.addresses.length > 0 %><br>
 
         <section id='address'>
-          <%= form_tag do %>
+          <%= form_tag "/cart", method: :patch do %>
             <h5>Please choose an address:</h5>
               <p style=padding-top:3px;> <%= select_tag 'address', options_from_collection_for_select(current_user.addresses, 'id', 'nickname') %></p>
             <%= submit_tag 'Ship To This Address' %>

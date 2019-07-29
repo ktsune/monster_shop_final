@@ -39,7 +39,7 @@ Rails.application.routes.draw do
   patch '/profile/:id', to: 'user/addresses#update'
   get '/profile/:id', to: 'user/addresses#show'
   delete '/profile/:id', to: 'user/addresses#destroy'
-  post '/cart', to: 'cart#choose_address'
+  patch '/cart', to: 'cart#choose_address'
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#login'
