@@ -23,13 +23,13 @@
     <%= form_tag do %>
       <h5>Please choose an address:</h5>
         <p style=padding-top:3px;> <%= select_tag 'address', options_from_collection_for_select(current_user.addresses, 'id', 'nickname') %></p>
-      <%= submit_tag 'Ship To This Address' %>
+      <%= submit_tag 'Update Shipping Address' %>
     <% end %>
   </section><br>
 <% end %>
 
-  <p><%= link_to "Address # #{@order.address.id}", "/profile/#{@order.address.id}" %></p>
-  <p>Nickname: <%= @order.address.nickname %></p>
+  <p>Current Shipping Address:</p>
+  <p>Nickname: <%= link_to "#{@order.address.nickname}", "/profile/#{@order.address.id}" %></p>
   <p>Street: <%= @order.address.address %></p>
   <p>City: <%= @order.address.city %></p>
   <p>State: <%= @order.address.state %></p>
