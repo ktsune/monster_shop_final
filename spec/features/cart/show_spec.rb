@@ -187,7 +187,7 @@ RSpec.describe 'Cart Show Page' do
         expect(page).to have_content("Please choose an address:")
         expect(page).to have_content(@user_1_work.nickname)
 
-        click_on "Choose This Address"
+        click_on "Ship To This Address"
         expect(page).to have_content(@user_1_work.nickname)
       end
     end
