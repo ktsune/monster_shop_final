@@ -18,12 +18,14 @@
 <% end %>
 
 <% if @order.pending? %>
-  <h4>Which address would you like to send this order to?</h4>
 
-  <%= form_tag do %>
-    <h5>Please choose an address: <%= select_tag 'address', options_from_collection_for_select(@addresses, 'id', 'nickname') %> </h5>
-    <%= submit_tag 'Choose This Address' %>
-  <% end %>
+  <section id='address'>
+    <%= form_tag do %>
+      <h5>Please choose an address:</h5>
+        <p style=padding-top:3px;> <%= select_tag 'address', options_from_collection_for_select(current_user.addresses, 'id', 'nickname') %></p>
+      <%= submit_tag 'Ship To This Address' %>
+    <% end %>
+  </section><br>
 <% end %>
 
   <p><%= link_to "Address # #{@order.address.id}", "/profile/#{@order.address.id}" %></p>
