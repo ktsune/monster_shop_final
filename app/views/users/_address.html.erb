@@ -1,9 +1,5 @@
 <h1><%= @user.name %></h1>
-
-<% unless current_admin?  %>
-  <%= button_to "My Addresses", "/profile/addresses", method: :get %>
-<% end %>
-
+<%= button_to "My Addresses", "/profile/addresses", method: :get %>
 <p>Email: <%= @user.email %></p>
 
 <% @user.addresses.map do |address_info| %>

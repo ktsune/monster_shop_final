@@ -1,5 +1,4 @@
 class User::AddressesController < ApplicationController
-  before_action :require_user
   before_action :exclude_admin
 
   def index
