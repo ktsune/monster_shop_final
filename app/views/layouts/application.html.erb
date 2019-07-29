@@ -65,7 +65,7 @@
             <%= link_to 'Items', '/items', class: "nav-link" %>
           </li>
 
-          <% unless current_user || current_admin? %>
+          <% if current_user && !current_admin? %>
             <li class="nav-item">
               <%= link_to "Cart: #{cart.count}", cart_path, class: "nav-link" %>
             </li>
