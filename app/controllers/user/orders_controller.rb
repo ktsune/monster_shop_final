@@ -1,5 +1,4 @@
 class User::OrdersController < ApplicationController
-  before_action :exclude_admin
 
   def index
     @orders = current_user.orders

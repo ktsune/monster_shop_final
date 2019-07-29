@@ -1,4 +1,9 @@
 <h2>Address Info</h2>
+
+<% unless current_admin?  %>
+  <%= button_to "My Addresses", "/profile/addresses", method: :get %>
+<% end %>
+
 <p>Nickname: <%= @address.nickname %></p>
 <p>Street: <%= @address.address %></p>
 <p>City: <%= @address.city %></p>

@@ -42,7 +42,7 @@ class User::AddressesController < ApplicationController
   def destroy
     @address = Address.find(params[:id])
     if @address.shipped_order?
-      generate_flash(@address)
+      flash[:notice] = 'This address has been used in a shipped order and cannot be deleted!'
     else
       @user = current_user
       @address.destroy
