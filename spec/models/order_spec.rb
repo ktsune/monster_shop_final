@@ -90,5 +90,12 @@ RSpec.describe Order do
     it '.by_status' do
       expect(Order.by_status).to eq([@order_2, @order_1, @order_4, @order_3])
     end
+
+    it '.pending?' do
+      @order_2.update(status: 'packaged')
+      expect(@order_2.pending?).to eq(false)
+      @order_2.update(status: 'pending')
+      expect(@order_2.reload.pending?).to eq(true)
+    end
   end
 end

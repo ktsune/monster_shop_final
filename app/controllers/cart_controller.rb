@@ -15,7 +15,6 @@ class CartController < ApplicationController
   end
 
   def show
-    @address_length = current_user.addresses.length
   end
 
   def empty
@@ -29,7 +28,6 @@ class CartController < ApplicationController
   end
 
   def update_quantity
-    binding.pry
 
     if params[:change] == "more"
       cart.add_item(params[:item_id])

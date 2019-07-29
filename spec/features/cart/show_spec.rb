@@ -184,7 +184,7 @@ RSpec.describe 'Cart Show Page' do
         visit '/cart'
 
         expect(current_path).to eq('/cart')
-        expect(page).to have_content("Please choose an address to checkout with")
+        expect(page).to have_content("Please choose an address:")
       end
     end
   end
