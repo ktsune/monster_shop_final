@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :cart,
                 :current_user,
+                :current_user?, 
                 :current_merchant_user?,
                 :current_admin?
 

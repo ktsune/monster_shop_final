@@ -48,4 +48,8 @@ class Order < ApplicationRecord
   def pending?
     status == "pending"
   end
+
+  def address_id
+
+  end
 end

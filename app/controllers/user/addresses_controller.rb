@@ -33,19 +33,15 @@ class User::AddressesController < ApplicationController
   def update
     @user = current_user
     @address = Address.find(params[:id])
-    if @address.update(address_params)
-      flash[:notice] = 'Your address has been updated!'
-      redirect_to "/profile/#{@address.id}"
-    else
-      generate_flash(@address)
-      render :edit
-    end
+    @address.update(address_params)
+    flash[:notice] = 'Your address has been updated!'
+    redirect_to "/profile/#{@address.id}"
   end
 
   def destroy
     @address = Address.find(params[:id])
     if @address.shipped_order?
-      flash[:error] = "This address has been used in a shipped order and cannot be deleted!"
+      generate_flash(@address)
     else
       @user = current_user
       @address.destroy

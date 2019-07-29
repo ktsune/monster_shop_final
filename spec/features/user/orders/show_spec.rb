@@ -94,3 +94,19 @@ RSpec.describe 'Order Show Page' do
     end
   end
 end
+
+RSpec.describe 'As an unregistered user' do
+  it 'it shows a 404 page if invalid user_id is entered' do
+    visit profile_path
+
+    expect(current_path).to eq(profile_path)
+    expect(page.status_code).to eq(404)
+    expect(page).to_not have_content('Name: ')
+    expect(page).to_not have_content('Email: ')
+    expect(page).to_not have_content('Address: ')
+    expect(page).to_not have_content('City: ')
+    expect(page).to_not have_content('State: ')
+    expect(page).to_not have_content('Zip: ')
+    expect(page).to have_content("The page you were looking for doesn't exist")
+  end
+end

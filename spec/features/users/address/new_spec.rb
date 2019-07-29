@@ -40,5 +40,20 @@ RSpec.describe 'New Adddress' do
       expect(page).to have_content(@user_1_work.state)
       expect(page).to have_content(@user_1_work.zip)
     end
+
+    describe 'I can not add a new address if' do
+      it 'I do not complete the new address form' do
+        visit "/profile/addresses"
+
+        click_on "New Address"
+
+        fill_in 'Address', with: @user_1_work.address
+        click_button 'Submit'
+
+        expect(page).to have_content("city: [\"can't be blank\"]")
+        expect(page).to have_content("state: [\"can't be blank\"]")
+        expect(page).to have_content("zip: [\"can't be blank\"]")
+      end
+    end
   end
 end
