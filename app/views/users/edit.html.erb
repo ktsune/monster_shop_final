@@ -1,23 +1,26 @@
 <%= form_for @user do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
 
-  <%= f.label :email %>
-  <%= f.email_field :email %>
+  <%= f.label :name %>:<br>
+  <%= f.text_field :name %><br>
 
   <%= f.fields_for :addresses do |addresses_form| %>
-      <%= addresses_form.label :address %>
-      <%= addresses_form.text_field :address %>
 
-      <%= addresses_form.label :city %>
-      <%= addresses_form.text_field :city %>
+      <%= addresses_form.label :address %>:<br>
+      <%= addresses_form.text_field :address %><br>
 
-      <%= addresses_form.label :state %>
-      <%= addresses_form.text_field :state %>
+      <%= addresses_form.label :city %>:<br>
+      <%= addresses_form.text_field :city %><br>
 
-      <%= addresses_form.label :zip %>
-      <%= addresses_form.text_field :zip %>
+      <%= addresses_form.label :state %>:<br>
+      <%= addresses_form.text_field :state %><br>
+
+      <%= addresses_form.label :zip %>:<br>
+      <%= addresses_form.text_field :zip %><br>
+
+  <%= f.label :email %>:<br>
+  <%= f.email_field :email %><br>
 
   <%= f.submit 'Update Profile' %>
+  
   <% end %>
 <% end %>
