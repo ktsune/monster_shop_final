@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
+    # @address = Address.find(params[:id])
   end
 
   def new
