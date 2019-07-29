@@ -1,6 +1,6 @@
 class CartController < ApplicationController
   before_action :exclude_admin
-  
+
   def add_item
     item = Item.find(params[:item_id])
     session[:cart] ||= {}
@@ -15,6 +15,7 @@ class CartController < ApplicationController
   end
 
   def show
+    @address_length = current_user.addresses.length
   end
 
   def empty
@@ -28,6 +29,8 @@ class CartController < ApplicationController
   end
 
   def update_quantity
+    binding.pry
+
     if params[:change] == "more"
       cart.add_item(params[:item_id])
     elsif params[:change] == "less"
@@ -35,6 +38,13 @@ class CartController < ApplicationController
       return remove_item if cart.count_of(params[:item_id]) == 0
     end
     session[:cart] = cart.contents
+    redirect_to '/cart'
+  end
+
+  def choose_address
+    user = current_user
+    @address_length = user.addresses.length
+
     redirect_to '/cart'
   end
 end

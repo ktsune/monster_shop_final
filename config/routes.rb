@@ -27,16 +27,19 @@ Rails.application.routes.draw do
   post '/orders', to: 'user/orders#create'
   get '/profile/orders', to: 'user/orders#index'
   get '/profile/orders/:id', to: 'user/orders#show'
+  post '/profile/orders/:id', to: 'user/orders#update'
   delete '/profile/orders/:id', to: 'user/orders#cancel'
 
   # => Addresses
   get '/profile/addresses', to: 'user/addresses#index'
   get '/profile/new_address', to: 'user/addresses#new'
   post '/profile/addresses', to: 'user/addresses#create'
+  patch '/profile/orders', to: 'user/orders#update_address'
   get '/profile/:id/edit_address', to: 'user/addresses#edit'
   patch '/profile/:id', to: 'user/addresses#update'
   get '/profile/:id', to: 'user/addresses#show'
   delete '/profile/:id', to: 'user/addresses#destroy'
+  patch '/cart', to: 'cart#choose_address'
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#login'

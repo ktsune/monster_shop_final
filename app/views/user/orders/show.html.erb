@@ -17,11 +17,17 @@
   </section>
 <% end %>
 
-<h2>Which address would you like to send this order to?</h2>
-<% @addresses.map do |address_info| %>
-  <p>Street: <%= address_info.address %></p>
-  <p>City: <%= address_info.city %></p>
-  <p>State: <%= address_info.state %></p>
-  <p>Zip: <%= address_info.zip %></p>
+<h4>Which address would you like to send this order to?</h4>
+
+<%= form_tag do %>
+  <h5>Please choose an address: <%= select_tag 'address', options_from_collection_for_select(@addresses, 'id', 'nickname') %> </h5>
+  <%= submit_tag 'Choose This Address' %>
 <% end %>
-<h5>Please choose an address: <%= select_tag 'person', options_from_collection_for_select(@addresses, 'id', 'nickname') %> </h5>
+
+    <p><%= link_to "Address # #{@order.address.id}", "/profile/#{@order.address.id}" %></p>
+    <p>Nickname: <%= @order.address.nickname %></p>
+    <p>Street: <%= @order.address.address %></p>
+    <p>City: <%= @order.address.city %></p>
+    <p>State: <%= @order.address.state %></p>
+    <p>Zip: <%= @order.address.zip %></p>
+    <p>=====================</p>

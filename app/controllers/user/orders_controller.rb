@@ -30,6 +30,15 @@ class User::OrdersController < ApplicationController
     redirect_to '/profile/orders'
   end
 
+  def update
+    @order = Order.find(params[:id])
+    @order.address_id = params[:address]
+    @order.save
+    @addresses = current_user.addresses
+
+    render :show
+  end
+
   def cancel
     order = current_user.orders.find(params[:id])
     order.cancel
