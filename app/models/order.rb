@@ -44,4 +44,12 @@ class Order < ApplicationRecord
   def self.by_status
     order(:status)
   end
+
+  def pending?
+    status == "pending"
+  end
+
+  def address_id
+
+  end
 end

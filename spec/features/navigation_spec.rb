@@ -352,6 +352,12 @@ RSpec.describe 'Site Navigation' do
 
         expect(page).to_not have_link('Cart')
       end
+
+      it 'I see a 404 visiting undefined paths' do
+        visit '/apple'
+
+        expect(page.status_code).to eq(404)
+      end
     end
   end
 end

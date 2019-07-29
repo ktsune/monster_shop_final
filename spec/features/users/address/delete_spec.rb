@@ -37,7 +37,16 @@ RSpec.describe 'Delete an address' do
 
       expect(current_path).to eq("/profile/addresses")
       expect(page).to_not have_css("section#address-#{@user_1_work.id}")
-      expect(page).to have_content("This address has been used in a shipped order and cannot be deleted!")
+    end
+
+    it 'I cannot delete an address thats been used in a shipped order' do
+      @order_1.update(status: "shipped")
+      visit "/profile/#{@user_1_work.id}"
+
+      expect(page).to have_content(@user_1_work.address)
+      expect(page).to have_content(@user_1_work.city)
+      expect(page).to have_content(@user_1_work.state)
+      expect(page).to have_content(@user_1_work.zip)
     end
   end
 end

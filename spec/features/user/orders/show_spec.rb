@@ -83,5 +83,30 @@ RSpec.describe 'Order Show Page' do
       expect(@giant.inventory).to eq(5)
       expect(@ogre.inventory).to eq(7)
     end
+
+    it 'I can pick an address to fill my order with' do
+      visit "/profile/orders/#{@order_1.id}"
+
+      expect(page).to have_content(@user_work.address)
+      expect(page).to have_content(@user_work.city)
+      expect(page).to have_content(@user_work.state)
+      expect(page).to have_content(@user_work.zip)
+    end
+  end
+end
+
+RSpec.describe 'As an unregistered user' do
+  it 'it shows a 404 page if invalid user_id is entered' do
+    visit profile_path
+
+    expect(current_path).to eq(profile_path)
+    expect(page.status_code).to eq(404)
+    expect(page).to_not have_content('Name: ')
+    expect(page).to_not have_content('Email: ')
+    expect(page).to_not have_content('Address: ')
+    expect(page).to_not have_content('City: ')
+    expect(page).to_not have_content('State: ')
+    expect(page).to_not have_content('Zip: ')
+    expect(page).to have_content("The page you were looking for doesn't exist")
   end
 end
