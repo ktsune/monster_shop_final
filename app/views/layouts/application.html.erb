@@ -12,7 +12,9 @@
 
     <nav class="navbar navbar-dark bg-primary">
         <%= link_to 'MonsterShop', root_path, class:"navbar-brand" %>
-        <a class="navbar-brand"> <p>Logged in as <%= current_user.name %></a>
+        <% if current_user %>
+          <a class="navbar-brand"> <p>Logged in as <%= current_user.name %></a>
+        <% end %>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -36,22 +38,24 @@
             <li class="nav-item">
               <%= link_to 'Log Out', logout_path, class: "nav-link" %>
             </li>
+          <% if current_user && !current_admin? %>
             <li class="nav-item">
               <%= link_to 'Profile', profile_path, class: "nav-link" %>
             </li>
-
-          <% if current_merchant_user? %>
-            <li class="nav-item">
-              <%= link_to 'Merchant Dashboard', merchant_dashboard_path, class: "nav-link" %>
-            </li>
-          <% elsif current_admin? %>
-            <li class="nav-item">
-              <%= link_to 'Admin Dashboard', admin_dashboard_path, class: "nav-link" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'Users', href='/admin/users', class: "nav-link" %>
-            </li>
           <% end %>
+
+            <% if current_merchant_user? %>
+              <li class="nav-item">
+                <%= link_to 'Merchant Dashboard', merchant_dashboard_path, class: "nav-link" %>
+              </li>
+            <% elsif current_admin? %>
+              <li class="nav-item">
+                <%= link_to 'Admin Dashboard', admin_dashboard_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'Users', href='/admin/users', class: "nav-link" %>
+              </li>
+            <% end %>
         <% end %>
 
           <li class="nav-item">
@@ -61,7 +65,7 @@
             <%= link_to 'Items', '/items', class: "nav-link" %>
           </li>
 
-          <% unless current_user && current_admin? %>
+          <% unless current_user || current_admin? %>
             <li class="nav-item">
               <%= link_to "Cart: #{cart.count}", cart_path, class: "nav-link" %>
             </li>

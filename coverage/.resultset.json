@@ -3819,6 +3819,10 @@
         1,
         20,
         null,
+        null,
+        1,
+        null,
+        null,
         null
       ],
       "/Users/sarahlee/turing/2module/monster_shop_final/spec/models/review_spec.rb": [
@@ -4474,6 +4478,6 @@
         null
       ]
     },
-    "timestamp": 1564413457
+    "timestamp": 1564430034
   }
 }
