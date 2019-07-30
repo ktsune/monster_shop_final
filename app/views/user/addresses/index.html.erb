@@ -1,12 +1,17 @@
 <h1>Addresses for <%= @user.name %></h1>
 
+  ===============<br>
+  <%= button_to 'New Address', "/profile/new_address", method: :get %>
+  ===============<br>
+
 <% @user.addresses.map do |address_info| %>
-  <p><%= link_to "Address # #{address_info.id}", "/profile/#{address_info.id}" %></p>
+  <p><%= link_to "#{address_info.nickname} Address", "/profile/#{address_info.id}" %></p>
   <p>Nickname: <%= address_info.nickname %></p>
   <p>Street: <%= address_info.address %></p>
   <p>City: <%= address_info.city %></p>
   <p>State: <%= address_info.state %></p>
   <p>Zip: <%= address_info.zip %></p>
+  ===============<br>
 <% end %>
 
-<%= button_to 'New Address', "/profile/new_address", method: :get %>
+<%= link_to 'Back to Profile', profile_path  %>

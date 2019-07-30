@@ -3936,7 +3936,7 @@
         null,
         null,
         1,
-        812,
+        802,
         null,
         null,
         1,
@@ -3952,7 +3952,7 @@
         null,
         null,
         1,
-        125,
+        110,
         null,
         null,
         1,
@@ -4013,6 +4013,7 @@
         null,
         1,
         16,
+        null,
         null,
         null,
         1,
@@ -4431,7 +4432,6 @@
       ],
       "/Users/sarahlee/turing/2module/monster_shop_final/app/controllers/user/orders_controller.rb": [
         1,
-        1,
         null,
         1,
         4,
@@ -4479,6 +4479,6 @@
         null
       ]
     },
-    "timestamp": 1564434043
+    "timestamp": 1564444438
   }
 }

@@ -1,20 +1,22 @@
 <%= form_tag "/profile/addresses" do %>
 
-  <%= label_tag :nickname %>
-  <%= text_field_tag :nickname %>
+  <%= label_tag :nickname %>:<br>
+  <%= text_field_tag :nickname %><br>
 
-  <%= label_tag :address %>
-  <%= text_field_tag :address %>
+    <%= label_tag :address %>:<br>
+  <p style="width:160px;">
+    <%= text_field_tag :address %><br>
+  </p>
 
-  <%= label_tag :city %>
-  <%= text_field_tag :city %>
+  <%= label_tag :city %>:<br>
+  <%= text_field_tag :city %><br>
 
-  <%= label_tag :state %>
-  <%= text_field_tag :state %>
+  <%= label_tag :state %>:<br>
+  <%= text_field_tag :state %><br>
 
-  <%= label_tag :zip %>
-  <%= text_field_tag :zip %>
+  <%= label_tag :zip %>:<br>
+  <%= text_field_tag :zip %><br>
 
-  <%= submit_tag 'Submit' %>
+  <p style=padding-top:25px;><%= submit_tag 'Submit' %></p>
 
 <% end %>
