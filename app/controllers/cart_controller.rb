@@ -44,7 +44,7 @@ class CartController < ApplicationController
 
     user = current_user
     @address_length = user.addresses.length
-    flash[:notice] = "Your address has been updated!"
+    flash[:notice] = "Your address has been selected!"
 
     redirect_to '/cart'
   end
