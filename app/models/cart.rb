@@ -33,7 +33,17 @@ class Cart
   end
 
   def apply_coupon(coupon)
-    @coupon = coupon
+    merchant_items = @contents.select do |item_id, quantity|
+      item = Item.find(item_id)
+      item.merchant_id == coupon.merchant_id
+    end
+
+    # => merchant_items == items from coupon's merchant
+    if merchant_items.length > 0
+      @coupon = coupon
+    else
+      false
+    end
   end
 
   def discounted_total

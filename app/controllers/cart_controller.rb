@@ -49,10 +49,12 @@ class CartController < ApplicationController
     user = current_user
     # binding.pry
     coupon = Coupon.find_by_name(params[:name])
-    cart.apply_coupon(coupon)
-    new_total = cart.discounted_total
-    flash[:notice] = "Your discount has been applied. Your new total is #{new_total}."
-
+    if cart.apply_coupon(coupon)
+      new_total = cart.discounted_total
+      flash[:notice] = "Your discount has been applied. Your new total is #{new_total}."
+    else
+      flash[:notice] = "That is not a valid coupon."
+    end 
     redirect_to '/cart'
   end
 end
