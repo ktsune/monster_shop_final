@@ -7,6 +7,9 @@
       <%= button_to 'Enable', "/admin/merchants/#{merchant.id}", method: :patch if !merchant.enabled? %>
     <% else %>
       <h2><%= link_to merchant.name, "/merchants/#{merchant.id}" %></h2>
+      <section id='coupons-<%= merchant.id %>'>
+        <%= link_to "My coupons", "/merchants/#{merchant.id}/coupons" %>
+      </section>
     <% end %>
   </section>
 <% end %>
