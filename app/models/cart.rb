@@ -32,6 +32,38 @@ class Cart
     grand_total
   end
 
+  def apply_coupon(coupon)
+    merchant_items = @contents.select do |item_id, quantity|
+      item = Item.find(item_id)
+      item.merchant_id == coupon.merchant_id
+    end
+
+    # => merchant_items == items from coupon's merchant
+    if merchant_items.length > 0
+      @coupon = coupon
+    else
+      # false
+    end
+  end
+
+  def discounted_total
+    grand_total = 0.0
+    merchant_total = 0.0
+    @contents.each do |item_id, quantity|
+      item = Item.find(item_id)
+      grand_total += item.price * quantity
+      if item.merchant_id == @coupon.merchant_id
+        merchant_total += item.price * quantity
+      end
+    end
+    if merchant_total > @coupon.value
+      grand_total -= @coupon.value
+    else
+      grand_total -= merchant_total
+    end
+    grand_total
+  end
+
   def count_of(item_id)
     @contents[item_id.to_s]
   end

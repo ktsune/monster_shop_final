@@ -34,9 +34,13 @@ class User::AddressesController < ApplicationController
   def update
     @user = current_user
     @address = Address.find(params[:id])
-    @address.update(address_params)
-    flash[:notice] = 'Your address has been updated!'
-    redirect_to "/profile/#{@address.id}"
+    if @address.update(address_params)
+      flash[:notice] = 'Your address has been updated!'
+      redirect_to "/profile/#{@address.id}"
+    else
+      generate_flash(@address)
+      render :edit
+    end
   end
 
   def destroy

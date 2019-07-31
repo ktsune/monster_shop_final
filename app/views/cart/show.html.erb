@@ -3,6 +3,7 @@
   <p>Your Cart is Empty!</p>
 <% else %>
 <h3>Total: <%= number_to_currency(cart.grand_total) %></h3>
+<!-- <h3>Discounted Total: number_to_currency(cart.discounted_total) %></h3> -->
   <% cart.items.each do |item| %>
     <section id='item-<%= item.id%>'>
       <h2><%= link_to item.name, "/items/#{item.id}" %></h2>
@@ -17,6 +18,15 @@
     </section>
   <% end %>
 
+<h5>Enter Coupon:</h5>
+  <%= form_tag "/cart/add_coupon", method: :patch do %>
+
+    <%= label_tag :name %>
+    <%= text_field_tag :name %>
+
+    <%= submit_tag "Add This Coupon" %>
+  <% end %>
+
   <section id='checkout'>
     <% if current_user %>
       <% if current_user.addresses.length > 0 %><br>
@@ -24,7 +34,7 @@
         <section id='address'>
           <%= form_tag "/cart", method: :patch do %>
             <h5>Please choose an address:</h5>
-              <p style=padding-top:3px;> <%= select_tag 'address', options_from_collection_for_select(current_user.addresses, 'id', 'nickname') %></p>
+              <p style=padding-top:3px;> <%= select_tag 'address_id',  options_from_collection_for_select(current_user.addresses, 'id', 'nickname'), :include_blank => true %></p>
             <%= submit_tag 'Ship To This Address' %>
           <% end %>
         </section><br>

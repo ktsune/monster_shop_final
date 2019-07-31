@@ -5,6 +5,7 @@ RSpec.describe 'Merchant Dashboard' do
     before :each do
       @merchant_1 = Merchant.create!(name: 'Megans Marmalades', address: '123 Main St', city: 'Denver', state: 'CO', zip: 80218)
       @merchant_2 = Merchant.create!(name: 'Brians Bagels', address: '125 Main St', city: 'Denver', state: 'CO', zip: 80218)
+      @hippo_coupon = @merchant_2.coupons.create!(name: 'Mega Saver', value: 5.00, merchant_id: @merchant_2.id, enabled: true)
       @m_user = @merchant_1.users.create(name: 'Megan', email: 'megan@example.com', password: 'securepassword')
       @m_user_work = Address.create!(nickname: "work", address: "123 Straw Lane", city: "Straw City", state: "CO", zip: 12345, user_id: @m_user.id)
       @ogre = @merchant_1.items.create!(name: 'Ogre', description: "I'm an Ogre!", price: 20.25, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: true, inventory: 5 )
@@ -62,6 +63,20 @@ RSpec.describe 'Merchant Dashboard' do
       click_link @order_2.id
 
       expect(current_path).to eq("/merchant/orders/#{@order_2.id}")
+    end
+
+    it 'I can see a button to my coupons' do
+      visit "/merchants"
+
+      within "#coupons-#{@merchant_2.id}" do
+        click_on "My coupons"
+      end
+
+      expect(current_path).to have_content("/merchants/#{@merchant_2.id}/coupons")
+
+      expect(page).to have_content(@hippo_coupon.name)
+      expect(page).to have_content(@hippo_coupon.enabled)
+      expect(page).to have_content(@hippo_coupon.value)
     end
   end
 end

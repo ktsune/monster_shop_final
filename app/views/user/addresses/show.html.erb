@@ -1,18 +1,17 @@
 <h2><%= @address.nickname %> Address</h2>
-
-<% unless current_admin?  %>
+=====================
+<% unless current_admin? %>
   <%= button_to "My Addresses", "/profile/addresses", method: :get %>
-<% end %><br>
-
+<% end %>
+=====================
 <p>Nickname: <%= @address.nickname %></p>
 <p>Street: <%= @address.address %></p>
 <p>City: <%= @address.city %></p>
 <p>State: <%= @address.state %></p>
 <p>Zip: <%= @address.zip %></p>
-
-
+=====================
 <%= button_to "Edit Address", "/profile/#{@address.id}/edit_address", method: :get %>
 
 <section id='address-<%= @address.id %>'>
-  <%= button_to 'Delete Address', "/profile/#{@address.id}", method: :delete %>
+  <p style=padding-top:0.5px;><%= button_to 'Delete Address', "/profile/#{@address.id}", method: :delete %></p>
 </section>

@@ -23,5 +23,12 @@ alex_work = Address.create!(nickname: "work", address: "123 Straw Lane", city: "
 berry_home = Address.create!(nickname: "home", address: "345 Blue Lane", city: "Blue City", state: "CA", zip: 56789, user_id: berry.id)
 jeff_home = Address.create!(nickname: "home", address: "345 Blue Lane", city: "Blue City", state: "CA", zip: 56789, user_id: jeff.id)
 
+# => coupons
+hippo_coupon = brian.coupons.create!(name: 'Mega Saver', value: 5.00, merchant_id:brian.id, enabled: true)
+hippo_coupon_2 = brian.coupons.create!(name: 'Save Big', value: 10.00, merchant_id: brian.id, enabled: true)
+giant_coupon = megan.coupons.create!(name: 'Giant Discount', value: 5.00, merchant_id:megan.id, enabled: true)
+giant_coupon_2 = megan.coupons.create!(name: 'Giant Savings', value: 10.00, merchant_id: megan.id, enabled: true)
+
+# => orders
 order_1 = alex.orders.create!(address_id: alex_work.id)
 order_2 = berry.orders.create!(address_id: berry_home.id)

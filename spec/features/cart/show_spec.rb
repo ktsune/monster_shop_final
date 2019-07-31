@@ -190,6 +190,24 @@ RSpec.describe 'Cart Show Page' do
         click_on "Ship To This Address"
         expect(page).to have_content(@user_1_work.nickname)
       end
+
+      it 'I can add a coupon' do
+        @brian = Merchant.create!(name: 'Brians Bagels', address: '125 Main St', city: 'Denver', state: 'CO', zip: 80218, enabled: false)
+        @hippo = @brian.items.create!(name: 'Hippo', description: "I'm a Hippo!", price: 50, image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaLM_vbg2Rh-mZ-B4t-RSU9AmSfEEq_SN9xPP_qrA2I6Ftq_D9Qw', active: false, inventory: 3 )
+        @hippo_coupon = @brian.coupons.create!(name: 'Mega Saver', value: 5.00, merchant_id: @brian.id, enabled: true)
+
+        visit item_path(@hippo)
+        click_button 'Add to Cart'
+
+        visit '/cart'
+
+        expect(current_path).to eq('/cart')
+
+        fill_in 'Name', with: @hippo_coupon.name
+        click_on 'Add This Coupon'
+
+        expect(page).to have_content("Your discount has been applied. Your new total is 45")
+      end
     end
   end
 end

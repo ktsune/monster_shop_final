@@ -10,12 +10,15 @@ class User::OrdersController < ApplicationController
   end
 
   def create
-    id = current_user.addresses.map do |address_info|
-      address_info.id
+    if session[:cart_address_id]
+      order = current_user.orders.new(address_id: session[:cart_address_id])
+    else
+      id = current_user.addresses.map do |address_info|
+        address_info.id
+      end
+      order = current_user.orders.new(address_id: id.join(" ").to_i)
     end
-
-    order = current_user.orders.new(address_id: id.join(" ").to_i)
-
+    
     order.save!
       cart.items.each do |item|
         order.order_items.create({
@@ -31,7 +34,7 @@ class User::OrdersController < ApplicationController
 
   def update
     @order = Order.find(params[:id])
-    @order.address_id = params[:address]
+    @order.address = Address.find(params[:address])
     @order.save
     @addresses = current_user.addresses
 
