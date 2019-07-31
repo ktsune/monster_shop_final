@@ -41,8 +41,8 @@ RSpec.describe 'User Registration' do
         expect(page).to have_button('Register')
         expect(page).to have_content("address: [\"can't be blank\"]")
         expect(page).to have_content("city: [\"can't be blank\"]")
-        expect(page).to have_content("state: [\"can't be blank\"]")
-        expect(page).to have_content("zip: [\"can't be blank\"]")
+        expect(page).to have_content("state: [\"can't be blank\", \"is the wrong length (should be 2 characters)\"]")
+        expect(page).to have_content("zip: [\"can't be blank\", \"is not a number\", \"is the wrong length (should be 5 characters)\"]")
         expect(page).to have_content("email: [\"can't be blank\"]")
         expect(page).to have_content("password: [\"can't be blank\"]")
       end

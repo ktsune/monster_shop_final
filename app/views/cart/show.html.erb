@@ -18,7 +18,7 @@
     </section>
   <% end %>
 
-<h3>Do you have a coupon you would like to add?</h3>
+<h5>Enter Coupon:</h5>
   <%= form_tag "/cart/add_coupon", method: :patch do %>
 
     <%= label_tag :name %>
@@ -34,7 +34,7 @@
         <section id='address'>
           <%= form_tag "/cart", method: :patch do %>
             <h5>Please choose an address:</h5>
-              <p style=padding-top:3px;> <%= select_tag 'address', options_from_collection_for_select(current_user.addresses, 'id', 'nickname') %></p>
+              <p style=padding-top:3px;> <%= select_tag 'address_id',  options_from_collection_for_select(current_user.addresses, 'id', 'nickname'), :include_blank => true %></p>
             <%= submit_tag 'Ship To This Address' %>
           <% end %>
         </section><br>

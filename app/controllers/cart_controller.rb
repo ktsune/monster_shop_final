@@ -15,6 +15,7 @@ class CartController < ApplicationController
   end
 
   def show
+    # binding.pry
   end
 
   def empty
@@ -39,22 +40,24 @@ class CartController < ApplicationController
   end
 
   def choose_address
+    session[:cart_address_id] = params[:address_id]
+
     user = current_user
     @address_length = user.addresses.length
+    flash[:notice] = "Your address has been updated!"
 
     redirect_to '/cart'
   end
 
   def add_coupon
     user = current_user
-    # binding.pry
     coupon = Coupon.find_by_name(params[:name])
     if cart.apply_coupon(coupon)
       new_total = cart.discounted_total
       flash[:notice] = "Your discount has been applied. Your new total is #{new_total}."
     else
       flash[:notice] = "That is not a valid coupon."
-    end 
+    end
     redirect_to '/cart'
   end
 end
