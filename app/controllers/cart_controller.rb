@@ -15,7 +15,6 @@ class CartController < ApplicationController
   end
 
   def show
-    # binding.pry
   end
 
   def empty
@@ -41,10 +40,10 @@ class CartController < ApplicationController
 
   def choose_address
     session[:cart_address_id] = params[:address_id]
-
+    # binding.pry
     user = current_user
     @address_length = user.addresses.length
-    flash[:notice] = "Your address has been updated!"
+    flash[:notice] = "Your shipping address has been selected!"
 
     redirect_to '/cart'
   end
