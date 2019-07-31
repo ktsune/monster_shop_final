@@ -69,7 +69,6 @@ RSpec.describe Cart do
 
     it '.discounted_total' do
       @cart.add_item(@hippo.id)
-      # @cart.add_item(@giant.id)
 
       @cart.apply_coupon(@hippo_coupon)
 

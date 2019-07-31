@@ -3412,7 +3412,6 @@
         1,
         1,
         null,
-        null,
         1,
         null,
         1,
@@ -3514,6 +3513,13 @@
         2,
         2,
         null,
+        null,
+        1,
+        1,
+        1,
+        null,
+        1,
+        null,
         null
       ],
       "/Users/sarahlee/turing/2module/monster_shop_final/app/models/coupon.rb": [
@@ -3525,7 +3531,8 @@
         1,
         null,
         1,
-        0,
+        null,
+        1,
         null,
         null
       ],
@@ -4685,6 +4692,6 @@
         null
       ]
     },
-    "timestamp": 1564541451
+    "timestamp": 1564543078
   }
 }

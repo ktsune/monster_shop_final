@@ -6,6 +6,7 @@ class Coupon < ApplicationRecord
   validates_presence_of :value
 
   def find_by_name(name)
-    self.where(name: name)
+    # binding.pry
+    Coupon.where(name: name)
   end
 end
