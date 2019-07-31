@@ -5,3 +5,15 @@
   <p>Value: <%= coupon.value %></p>
   <p>Enabled: <%= coupon.enabled %></p>
 <% end %>
+
+<%= form_tag "/merchants/#{@merchant.id}/coupons" do %>
+  <%= label_tag :name %>
+  <%= text_field_tag :name %>
+
+  <%= label_tag :value %>
+  <%= text_field_tag :value %>
+
+  <%= label_tag :enabled %>
+  <%= text_field_tag :enabled %>
+  <%= submit_tag "Add Coupon" %>
+<% end %>

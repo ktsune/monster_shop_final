@@ -4,4 +4,8 @@ class Coupon < ApplicationRecord
   validates_presence_of :name
   validates_presence_of :enabled
   validates_presence_of :value
+
+  def find_by_name(name)
+    self.where(name: name)
+  end
 end

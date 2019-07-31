@@ -43,6 +43,9 @@ Rails.application.routes.draw do
 
   # => coupons
   get '/merchants/:id/coupons', to: 'merchant/coupons#index'
+  get '/merchants/:id/coupons/new_coupon', to: 'merchant/coupons#new'
+  post '/merchants/:id/coupons', to: 'merchant/coupons#create'
+  patch '/cart/add_coupon', to: 'cart#add_coupon'
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#login'

@@ -28,7 +28,6 @@ class CartController < ApplicationController
   end
 
   def update_quantity
-
     if params[:change] == "more"
       cart.add_item(params[:item_id])
     elsif params[:change] == "less"
@@ -42,6 +41,17 @@ class CartController < ApplicationController
   def choose_address
     user = current_user
     @address_length = user.addresses.length
+
+    redirect_to '/cart'
+  end
+
+  def add_coupon
+    user = current_user
+    # binding.pry
+    coupon = Coupon.find_by_name(params[:name])
+    cart.apply_coupon(coupon)
+    new_total = cart.discounted_total
+    flash[:notice] = "Your discount has been applied. Your new total is #{new_total}."
 
     redirect_to '/cart'
   end
