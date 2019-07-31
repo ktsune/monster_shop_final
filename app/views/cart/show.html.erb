@@ -34,7 +34,7 @@
         <section id='address'>
           <%= form_tag "/cart", method: :patch do %>
             <h5>Please choose an address:</h5>
-              <p style=padding-top:3px;> <%= select_tag 'address_id',  options_from_collection_for_select(current_user.addresses, 'id', 'nickname'), :include_blank => true %></p>
+              <p style=padding-top:3px;> <%= select_tag 'address_id',  options_from_collection_for_select(current_user.addresses, 'id', 'nickname'), :prompt => "Choose an address" %></p>
             <%= submit_tag 'Ship To This Address' %>
           <% end %>
         </section><br>

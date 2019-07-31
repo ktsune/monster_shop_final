@@ -22,7 +22,7 @@
   <section id='address'>
     <%= form_tag "/profile/orders/#{@order.id}", method: :patch do %>
       <h5>Please choose an address:</h5>
-        <p style=padding-top:3px;><%= select_tag 'address', options_from_collection_for_select(current_user.addresses, 'id', 'nickname'), :include_blank => true %></p>
+        <p style=padding-top:3px;><%= select_tag 'address', options_from_collection_for_select(current_user.addresses, 'id', 'nickname'), :prompt => "Choose address" %></p>
       <%= submit_tag 'Update Shipping Address' %>
     <% end %>
   </section><br>
