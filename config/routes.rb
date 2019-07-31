@@ -41,6 +41,9 @@ Rails.application.routes.draw do
   delete '/profile/:id', to: 'user/addresses#destroy'
   patch '/cart', to: 'cart#choose_address'
 
+  # => coupons
+  get '/merchants/:id/coupons', to: 'merchant/coupons#index'
+
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#login'
   get '/logout', to: 'sessions#logout'

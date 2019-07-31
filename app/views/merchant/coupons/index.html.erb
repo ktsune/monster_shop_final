@@ -1,0 +1,7 @@
+<h2>Coupons</h2>
+
+<% @merchant.coupons.each do |coupon| %>
+  <h5>Name: <%= coupon.name %></h5>
+  <p>Value: <%= coupon.value %></p>
+  <p>Enabled: <%= coupon.enabled %></p>
+<% end %>

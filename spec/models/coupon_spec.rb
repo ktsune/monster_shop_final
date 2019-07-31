@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Address do
+RSpec.describe Coupon do
   describe 'Relationships' do
     it {should belong_to(:merchant)}
   end

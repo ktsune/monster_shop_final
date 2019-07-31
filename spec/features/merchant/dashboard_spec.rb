@@ -63,5 +63,11 @@ RSpec.describe 'Merchant Dashboard' do
 
       expect(current_path).to eq("/merchant/orders/#{@order_2.id}")
     end
+
+    # it 'I can manage my coupons' do
+    #   visit '/merchant'
+    #
+    #
+    # end 
   end
 end
