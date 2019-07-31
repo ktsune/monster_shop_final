@@ -34,12 +34,17 @@ class User::AddressesController < ApplicationController
   def update
     @user = current_user
     @address = Address.find(params[:id])
-    if @address.update(address_params)
-      flash[:notice] = 'Your address has been updated!'
-      redirect_to "/profile/#{@address.id}"
-    else
-      generate_flash(@address)
+    if @address.shipped_order?
+      flash[:notice] = 'This address has been used in a shipped order and cannot be edited!'
       render :edit
+    else
+      if @address.update(address_params)
+        flash[:notice] = 'Your address has been updated!'
+        redirect_to "/profile/#{@address.id}"
+      else
+        generate_flash(@address)
+        render :edit
+      end
     end
   end
 
