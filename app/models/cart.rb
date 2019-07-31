@@ -42,7 +42,7 @@ class Cart
     if merchant_items.length > 0
       @coupon = coupon
     else
-      false
+      # false
     end
   end
 
