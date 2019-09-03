@@ -1,9 +1,8 @@
-Project: Monster Shop
+# Project: Monster Shop
+
 Monster Shop is a fictitious e-commerce application that has admins, merchants, registered users, and visitors. Our application allows admins to manage all users. Merchants can fulfill orders, change order status and enable/disable items. Registered users and visitors can browse the items, place items in their shopping cart and checkout. Customers of the site can register and log in.
 
-Visit our app on Heroku
-
-Intent
+### Objective and Implementation 
 This group project was completed in 10 days as a requirement for Module 2 at Turing School of Software and Design.
 
 The project was built using Rails which implements the following:
@@ -20,16 +19,17 @@ FactoryBot to create objects for efficient testing.
 Version control using GitHub.
 Project management tool: GitHub Projects.
 
-Contributors
+### Contributors
 Sarah Tatro
 Jake Miller 
 Tyler Bierworth 
 Martha Troubh
 
-System Requirements
+### System Requirements
 Rails 5.x
 ActiveRecord - PostgreSQL
-Gems Used
+
+### Gems Used
 Bcrypt
 Capybara
 FactoryBot
@@ -39,25 +39,19 @@ RSpec
 Shoulda Matchers
 Simplecov
 
-GitHub Repository
+### GitHub Repository
 https://github.com/ktsune/monster_shop
 
-Database Diagram
-alt text
-
-Instructions
-How to setup:
+### Instructions
+#### How to setup:
   1. Clone the GitHub repository.
   2. Go to the directory with the new repo.  Run bundle install.
   3. Run rake db:{create,migrate,seed}
   4. Run rails s, visit localhost:3000 to view the app and navigate on your local server.
-Run tests:
+#### Run tests:
     1. Run rspec.
-    2. If you want
-Sample login credentials for users:
+    2. To run an individual test, simply type rspec and the full path to the test file into the          command line.
+#### Sample login credentials for users:
     1. Login as an admin: email admin@email.com, password: password
     2. Login as a merchant: email merchant@email.com, password: pw123
     3. Login as a customer: *create your own user account*
-    
-Ready to shop?
-To visit our shop, click on the link below:
